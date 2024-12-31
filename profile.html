@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* Navbar Styles */
+.navbar {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: #ecf0f1;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navbar Links */
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffd700;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    font-size: 24px;
+    color: #ecf0f1;
+    cursor: pointer;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .navbar ul {
+        display: none; /* Hide menu by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background: linear-gradient(90deg, #4b6cb7, #182848);
+        position: absolute;
+        top: 60px; /* Push below the navbar */
+        left: 0;
+        padding: 10px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .navbar ul.active {
+        display: flex; /* Show menu when active */
+    }
+
+    .navbar ul li {
+        margin: 0;
+        text-align: center;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu on mobile */
+    }
+}
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .profile-details,
+        .resume-upload {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-details h2 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        .profile-details p {
+            font-size: 1rem;
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .edit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Edit Form Styles */
+        .resume-upload h2 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        .resume-upload label {
+            display: block;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        .resume-upload input,
+        .resume-upload select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resume-upload input:focus,
+        .resume-upload select:focus {
+            border-color: #3498db;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+
+        .resume-upload button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .resume-upload button:hover {
+            background: linear-gradient(135deg, #27ae60, #219150);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar ul li {
+                margin: 5px 0;
+            }
+
+            .profile-container {
+                margin: 60px 15px 20px;
+            }
+
+            .resume-upload button,
+            .edit-btn {
+                width: 100%;
+                padding: 12px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+        <ul>
+            <li><a href="dashboard.html">🏠</a></li>   
+        </ul>
+    </nav>
+
+    <!-- Profile Section -->
+    <main class="profile-container">
+        <h1>User Profile</h1>
+        <div class="profile-details">
+            <h2>Personal Information</h2>
+            <p><strong>Name:</strong> <span id="name">John Doe</span></p>
+            <p><strong>Gender:</strong> <span id="gender">Male</span></p>
+            <p><strong>Username:</strong> <span id="username">johndoe123</span></p>
+            <p><strong>Email Address:</strong> <span id="email">john.doe@example.com</span></p>
+            <p><strong>Resume:</strong> <span id="resume">Not Uploaded</span></p>
+            <button class="edit-btn" onclick="editProfile()">Edit</button>
+        </div>
+
+        <div id="editForm" class="resume-upload" style="display: none;">
+            <h2>Edit Profile</h2>
+            <label for="editName">Name:</label>
+            <input type="text" id="editName">
+
+            <label for="editGender">Gender:</label>
+            <select id="editGender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="editUsername">Username:</label>
+            <input type="text" id="editUsername">
+
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail">
+
+            <label for="resumeUpload">Resume:</label>
+            <input type="file" id="resumeUpload" accept=".pdf, .doc, .docx">
+
+            <button onclick="saveChanges()">Save Changes</button>
+        </div>
+    </main>
+
+    <script>
+        // Populate user profile details
+        const userProfile = JSON.parse(localStorage.getItem('user')) || {
+            name: 'John Doe',
+            gender: 'Male',
+            username: 'johndoe123',
+            email: 'john.doe@example.com',
+            resume: 'Not Uploaded',
+        };
+
+        function populateProfile() {
+            document.getElementById('name').innerText = userProfile.name;
+            document.getElementById('gender').innerText = userProfile.gender;
+            document.getElementById('username').innerText = userProfile.username;
+            document.getElementById('email').innerText = userProfile.email;
+            document.getElementById('resume').innerText = userProfile.resume;
+        }
+
+        populateProfile();
+
+        function editProfile() {
+            document.getElementById('editForm').style.display = 'block';
+            document.getElementById('editName').value = userProfile.name;
+            document.getElementById('editGender').value = userProfile.gender;
+            document.getElementById('editUsername').value = userProfile.username;
+            document.getElementById('editEmail').value = userProfile.email;
+        }
+
+        function saveChanges() {
+            userProfile.name = document.getElementById('editName').value;
+            userProfile.gender = document.getElementById('editGender').value;
+            userProfile.username = document.getElementById('editUsername').value;
+            userProfile.email = document.getElementById('editEmail').value;
+
+            const resumeFile = document.getElementById('resumeUpload').files[0];
+            if (resumeFile) userProfile.resume = resumeFile.name;
+
+            localStorage.setItem('user', JSON.stringify(userProfile));
+            populateProfile();
+            alert('Profile updated successfully!');
+            document.getElementById('editForm').style.display = 'none';
+        }
+
+        // ADDED A TOGGLE HAMBURGER TO MOBILE DEVICE    
+        function toggleMenu() {
+    const menu = document.querySelector('.navbar ul');
+    menu.classList.toggle('active');
+}
+
+    </script>
+</body>
+</html>

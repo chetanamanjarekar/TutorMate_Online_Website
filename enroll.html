@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Courses</title>
+    <style>
+        /* Navbar Styles */
+        nav {
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #ffd700;
+        }
+
+        .home-icon {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .home-icon i {
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+        .home-icon:hover {
+            color: #ffd700;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            padding: 100px 20px 40px;
+            text-align: center;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        header input {
+            padding: 12px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        header input:focus {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        header button {
+            padding: 12px 25px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Course Container Styles */
+        section#courses {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .course-container {
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            width: 280px;
+            text-align: center;
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-container img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .course-container h3 {
+            font-size: 1.4rem;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .course-container button {
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .course-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Devices */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            
+            header input {
+                width: 200px;
+            }
+
+            header button {
+                padding: 10px 20px;
+            }
+
+            .course-container {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .course-container img {
+                height: 140px;
+            }
+
+            .course-container h3 {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                display: none;
+            }
+
+            nav ul li {
+                padding: 8px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="home-icon">
+            <i class="fas fa-arrow-left"></i> Home
+        </a>
+        <!-- <ul id="menu">
+            <li><a href="index.html">Home</a></li>
+        </ul> -->
+    </nav>
+
+    <header>
+        <h1>Enroll in Your Favorite Courses</h1>
+        <input type="text" id="searchBar" placeholder="Search for a course...">
+        <button onclick="searchCourse()">Search</button>
+    </header>
+
+    <section id="courses">
+        <!-- Python Course -->
+        <div class="course-container">
+            <img src="images/and2.png" alt="Python Course">
+            <h3>Python</h3>
+            <button onclick="enrollCourse('Python')">Enroll</button>
+            <button onclick="viewCourse('python_course.html')">View Course</button>
+        </div>
+
+        <!-- App Development Course -->
+        <div class="course-container">
+            <img src="images/and1.webp" alt="App Development">
+            <h3>App Development</h3>
+            <button onclick="enrollCourse('App Development')">Enroll</button>
+            <button onclick="viewCourse('web_dev_course.html')">View Course</button>
+        </div>
+
+        <!-- SEP Development Course -->
+        <div class="course-container">
+            <img src="images/AND3.png" alt="SEP Development">
+            <h3>SEP Development</h3>
+            <button onclick="enrollCourse('SEP Development')">Enroll</button>
+            <button onclick="viewCourse('web_dev_course.html')">View Course</button>
+        </div>
+    </section>
+
+    <script>
+        // Function to handle course search
+        function searchCourse() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const courses = document.querySelectorAll('.course-container');
+            courses.forEach(course => {
+                const title = course.querySelector('h3').innerText.toLowerCase();
+                course.style.display = title.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        // Function to redirect to course content
+        function viewCourse(url) {
+            window.location.href = url;
+        }
+
+        // Function to simulate enrolling in a course
+        function enrollCourse(courseName) {
+            alert(`You have successfully enrolled in the ${courseName} course!`);
+            
+            // Save to localStorage
+            const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+            enrolledCourses.push({ name: courseName, progress: 0 });
+            localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+        }
+
+        // Function to toggle the mobile menu visibility
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

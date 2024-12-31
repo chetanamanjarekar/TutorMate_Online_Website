@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineTutor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('images/tut5.jpg') no-repeat center center / cover;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply background only for home page */
+        .home-page::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            /* Move it upwards */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Increase height */
+            background-image: none;
+            background-size: cover;
+            /* Ensure the image maintains aspect ratio */
+            background-position: center;
+            /* Keep the image centered */
+            z-index: -1;
+        }
+
+        /* Welcome Section */
+        .heading {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: none;
+            /* Light Gray */
+        }
+
+        .heading h4 {
+            font-size: 50px;
+            color: white;
+            margin: 10px 0;
+            animation: fadeInUp 1.5s ease-out, scaleUp 1s ease-in-out, colorChange 2s infinite, blink 1.5s step-start infinite;
+            /* Add blinking effect */
+        }
+
+        /* Scale-up animation */
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.8);
+                /* Start smaller */
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.1);
+                /* Slightly scale up */
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                /* Return to normal size */
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsive Adjustment */
+@media (max-width: 768px) {
+    .scale-up-element {
+        animation: scaleUp 1.5s ease-in-out infinite; /* Faster for mobile */
+    }
+}
+        /* Responsive Styles for Mobile Devices */
+        @media (max-width: 768px) {
+            .heading {
+                padding: 30px 15px;
+                /* Reduce padding for smaller screens */
+            }
+
+            .heading h4 {
+                font-size: 36px;
+                /* Smaller font size on mobile */
+                margin: 5px 0;
+                /* Less margin */
+            }
+
+        }
+
+        /*explore button styling  */
+        /* Explore Courses Button in Heading Section */
+        .heading button {
+            background: linear-gradient(135deg, #e63946, #d62839);
+            /* Gradient background */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            /* Add padding for a comfortable clickable area */
+            font-size: 18px;
+            /* Adjust font size */
+            font-weight: bold;
+            /* Make text bold */
+            border-radius: 30px;
+            /* Round the corners for a smooth, modern look */
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            /* Smooth transition for hover effects */
+            text-transform: uppercase;
+            /* Uppercase text for a stronger look */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            /* Add shadow for depth */
+            margin-top: 20px;
+            /* Space above the button */
+        }
+
+        .heading button:hover {
+            background: linear-gradient(135deg, #28d62b, #e63946);
+            /* Reverse gradient on hover */
+            transform: translateY(-5px);
+            /* Lift the button slightly */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            /* Increase shadow effect on hover */
+        }
+
+        .heading button:focus {
+            outline: none;
+            /* Remove outline on focus */
+        }
+
+        /* social media links style */
+        .SocialMedia {
+            position: absolute;
+            right: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            width: 40px;
+            height: 200px;
+            background-color:black;
+            font-size: 25px;
+
+        }
+
+        .SocialMedia i:hover {
+            color: orange;
+        }
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+}
+
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navbar - Top Section */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color:none   ;
+    color: white;
+    position: relative;
+}
+    
+.top .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Hamburger Icon for Mobile */
+.top .hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Navbar Links */
+.top .nav {
+    display: flex;
+    gap: 15px;
+}
+
+.top .nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Hover Effect for Navbar Links */
+.top .nav a:hover {
+    background-color:lightcoral;
+    color: #333;
+}
+
+/* Mobile Navbar Styles */
+@media (max-width: 768px) {
+    .top .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color:none;
+        position: absolute;
+        top: 60px; /* Adjust based on navbar height */
+        left: 0;
+        padding-top: 10px;
+    }
+
+    .top .hamburger {
+        display: block;
+    }
+
+    .top .nav.show {
+        display: flex;
+    }
+
+    .top .nav a {
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+}
+/* about page css */
+/* General styles */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Community Section */
+#community {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.community-header h1 {
+    font-size: 2.5rem;
+    color: #e63946;
+    margin-bottom: 15px;
+}
+
+.community-header p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.testimonial {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+}
+
+.testimonial img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #ddd;
+}
+
+.testimonial p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.testimonial h3 {
+    font-size: 1rem;
+    color: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .testimonials {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial {
+        width: 90%;
+    }
+}
+
+
+        /* Hide hamburger icon on larger screens */
+        .hamburger {
+            display: none;
+        }
+
+        /* Responsive Navbar (for Mobile Devices) */
+        @media (max-width: 768px) {
+
+            /* Hide the navigation links on mobile by default */
+            .top .nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                flex-direction: column;
+                padding: 10px 0;
+            }
+
+            /* Display the navigation links when 'active' class is added */
+            .top .nav.active {
+                display: flex;
+            }
+
+            /* Hamburger Icon for Mobile */
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 30px;
+                color: white;
+            }
+
+            /* Close the navbar when clicked outside */
+            .overlay {
+                display: none;
+            }
+
+            .overlay.active {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+            }
+        }
+
+        /* Styling for the Overlay */
+        .overlay {
+            display: none;
+        }
+
+        /* Extra styling for better mobile experience */
+        @media (max-width: 500px) {
+            .top .logo {
+                font-size: 20px;
+            }
+
+            .top .nav a {
+                font-size: 14px;
+            }
+        }
+
+
+        /* Courses Section */
+        .courses {
+            background-color: #f9f9f9;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .courses h1 {
+            font-size: 36px;
+            color: #e63946;
+            margin-bottom: 20px;
+        }
+
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .course {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .course h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .course p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+
+        .courses .course h2 a {
+    text-decoration: none;
+    color: #e63946; /* Red color for links */
+    transition: color 0.3s;
+}
+
+.courses .course h2 a:hover {
+    color: #d62839; /* Darker red color on hover */
+}
+
+        /* Contact Section */
+        .contact {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #fdf6f6;
+        }
+
+        .contact h1 {
+            font-size: 36px;
+            color: #e63946;
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #d62839;
+        }
+
+        /* Responsive styles for mobile devices (max-width: 768px) */
+        @media (max-width: 768px) {
+            .contact h1 {
+                font-size: 28px;
+                /* Adjust heading size for smaller screens */
+                margin-bottom: 15px;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                max-width: 90%;
+                /* Adjust width for form elements */
+                font-size: 14px;
+                /* Reduce font size in form elements */
+                padding: 8px;
+                /* Reduce padding */
+            }
+
+            .contact-form button {
+                font-size: 14px;
+                /* Reduce button font size */
+                padding: 10px 18px;
+                /* Adjust padding for button */
+            }
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+  
+</head>
+
+
+<!-- HTML PART -->
+<body>
+
+    <body class="home-page">
+        <!-- Home page content goes here -->
+    </body>
+
+    <!-- Top Navigation -->
+<div class="top">
+    <div class="logo">TutorMate</div>
+    <!-- Hamburger Icon for Mobile -->
+    <div class="hamburger" onclick="toggleNav()">&#9776;</div>
+    <!-- Navbar Links (hidden on mobile) -->
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+        <a href="enroll.html">Enroll Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html">Login</a>
+    </div>
+</div>
+
+
+    <!-- Optional overlay (for darkening background when menu is open) -->
+    <div class="overlay" onclick="toggleNav()"></div>
+
+    <!-- Welcome Section -->
+    <div class="heading">
+        <div class="left">
+            <!-- <h1>Your path to success</h1> -->
+            <!-- <h2>Start Here</h2> -->
+            <h4>ONE TO ONE TUTORING WITH CERTIFIED TEACHERS
+            </h4>
+            <!-- <p>Let’s get started</p> -->
+            <button onclick="window.location.href='#courses';">Explore Courses</button>
+        </div>
+        <div class="SocialMedia">
+            <a href="https://www.facebook.com" target="_blank" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.twitter.com" target="_blank" title="Twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.whatsapp.com" target="_blank" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="courses" id="courses">
+        <h1>Our Courses</h1>
+        <div class="course-list">
+            <div class="course">
+                <h2><a href="">Digital Marketing</a></h2>
+                <p>Learn the art of online marketing, SEO, and social media strategies to grow your brand effectively.</p>
+            </div>
+            <div class="course">
+                <h2><a href="">Web Development </a></h2>
+                <p>Master frontend and backend development skills to become a full-stack web developer.</p>
+            </div>
+            <div class="course">
+                <h2><a href="">Graphic Design</a></h2>
+                <p>Explore creativity and learn professional tools to create stunning visual designs.</p>
+            </div>
+            <div class="course">
+                <h2><a href="">Python Course</a></h2>
+                <p>Enhance creativity and learn professional concepts and build Python Project</p>
+            </div>
+            <div class="course">
+                <h2><a href="">Full-stack</a></h2>
+                <p>Explore creativity and learn professional and become a Full-stack Development</p>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT US SECTION -->
+<!-- About Us Section -->
+<section id="about">
+    
+</section>
+    <section id="community">
+        <div class="community-header">
+            <h1>About us</h1>
+            <p>Discover stories and experiences from people across the globe who have been part of our journey.</p>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial">
+                <img src="images/WhatsApp Image 2024-12-12 at 11.23.28 PM-modified.png" alt="User 1">
+                <p>"Airbnb made our family vacation unforgettable. We found a cozy place that felt like home."</p>
+                <h3>- John Doe</h3>
+            </div>
+            <div class="testimonial">
+                <img src="images/WhatsApp Image 2024-12-12 at 11.32.32 PM-modified (1).png" alt="User 2">
+                <p>"A fantastic experience! I met amazing people and stayed at a place I could never imagine."</p>
+                <h3>- Jane Smith</h3>
+            </div>
+            <div class="testimonial">
+                <img src="images/WhatsApp_Image_2024-12-10_at_1.22.16_PM-removebg-preview-modified.png  " alt="User 3">
+                <p>"Airbnb allowed me to explore new cities comfortably and affordably. Highly recommended!"</p>
+                <h3>- Mark Lee</h3>
+            </div>
+            
+        </div>
+        
+    </section>
+    
+    
+    <!-- Contact Section -->
+    <div class="contact" id="contact">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you! Drop us a message below:</p>
+        <div class="contact-form">
+            <form id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+  
+        
+    
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 OnlineTutor. All rights reserved.
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert("Message sent successfully!");
+            this.reset();
+        });
+
+        function toggleNav() {
+        const nav = document.querySelector('.top .nav');
+        nav.classList.toggle('show');
+    }
+
+    
+
+
+    </script>
+</body>
+
+</html>
